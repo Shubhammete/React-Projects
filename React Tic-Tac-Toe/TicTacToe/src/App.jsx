@@ -1,41 +1,58 @@
 import { useState } from 'react'
 import './App.css'
 
-let SquareBox = ({value,handleClick})=>{
+let SquareBox = ({currentBox,handleClick})=>{
 
   return(
     <>
-      <button className="box" onClick={handleClick}>{value}</button>
+      <button className="box" onClick={handleClick}>{currentBox}</button>
     </>
   )
 }
 
-
-function App() {
-  // keep track of player 
+let Board = () =>{
   let [player,setPlayer] = useState(true)
-  // global state to change values to "X" or "O" from null
-  let [value,setValue]=useState(Array(9).fill(null))
+  let [history,setHistory]=useState([Array(9).fill(null)])
+  let currentBox = history[history.length -1]
+ 
+
+  let handlePlay=(currentBox)=>{
+    setPlayer(!player)
+    setHistory([...history,currentBox])
+  }
+   return(
+    <>
+    <App player={player} currentBox = {currentBox} onPlay={handlePlay}/>
+    
+    </>
+  )
+}
+
+function App({player,currentBox,onPlay}) {
+  // keep track of player 
+  
+  // global state to change currentBoxs to "X" or "O" from null
+  
   let handleClick = (e)=>{
-    let arrcopy = value.slice()
+    let arrcopy = currentBox.slice()
     // restrict updating box which has already updated
-    if(value[e]){
+    if(currentBox[e] || calculateWinner(currentBox)){
       return
-    }
+    }   
     // switching player
     if(player){
     arrcopy[e] = "X"
     }else{
       arrcopy[e] = "O"
     }
-    setValue(arrcopy)
-    setPlayer(!player)
+    onPlay(arrcopy)
   }
-  // winner
-  let winner = calculateWinner(value);
+  // winner 
+  let winner = calculateWinner(currentBox);
   let status = null;
   if(winner){
     status = "Winner is "+ winner
+
   }else{
     status = "Next Player is "+ (player ? "X" : "O")
   }
@@ -45,25 +62,26 @@ function App() {
       <h1>Tic-Tac-Toe</h1>
       <h1>{status}</h1>
     <div className='rows'>
-    <SquareBox value={value[0]} handleClick={()=>{handleClick(0)}}/>
-    <SquareBox value={value[1]} handleClick={()=>{handleClick(1)}}/>
-    <SquareBox value={value[2]} handleClick={()=>{handleClick(2)}}/>
+    <SquareBox currentBox={currentBox[0]} handleClick={()=>{handleClick(0)}}/>
+    <SquareBox currentBox={currentBox[1]} handleClick={()=>{handleClick(1)}}/>
+    <SquareBox currentBox={currentBox[2]} handleClick={()=>{handleClick(2)}}/>
     </div>
     <div className='rows'>
-    <SquareBox value={value[3]} handleClick={()=>{handleClick(3)}}/>
-    <SquareBox value={value[4]} handleClick={()=>{handleClick(4)}}/>
-    <SquareBox value={value[5]} handleClick={()=>{handleClick(5)}}/>
+    <SquareBox currentBox={currentBox[3]} handleClick={()=>{handleClick(3)}}/>
+    <SquareBox currentBox={currentBox[4]} handleClick={()=>{handleClick(4)}}/>
+    <SquareBox currentBox={currentBox[5]} handleClick={()=>{handleClick(5)}}/>
     </div>
     <div className='rows'>
-    <SquareBox value={value[6]} handleClick={()=>{handleClick(6)}}/>
-    <SquareBox value={value[7]} handleClick={()=>{handleClick(7)}}/>
-    <SquareBox value={value[8]} handleClick={()=>{handleClick(8)}}/>
+    <SquareBox currentBox={currentBox[6]} handleClick={()=>{handleClick(6)}}/>
+    <SquareBox currentBox={currentBox[7]} handleClick={()=>{handleClick(7)}}/>
+    <SquareBox currentBox={currentBox[8]} handleClick={()=>{handleClick(8)}}/>
     </div>
     </>
   )
 }
 
-function calculateWinner(value) {
+
+function calculateWinner(currentBox) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -76,13 +94,14 @@ function calculateWinner(value) {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (value[a] && value[a] === value[b] && value[a] === value[c]) {
-      return value[a];
+    if (currentBox[a] && currentBox[a] === currentBox[b] && currentBox[a] === currentBox[c]) {
+      return currentBox[a];
     }
+   
   }
   return null;
 
 }
 
 
-export default App
+export default Board
