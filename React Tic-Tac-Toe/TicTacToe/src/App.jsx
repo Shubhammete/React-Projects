@@ -13,17 +13,42 @@ let SquareBox = ({currentBox,handleClick})=>{
 let Board = () =>{
   let [player,setPlayer] = useState(true)
   let [history,setHistory]=useState([Array(9).fill(null)])
-  let currentBox = history[history.length -1]
- 
+  // let currentBox = history[history.length -1]
+ // to track which box user is viewing
+ let [currentMove, setCurrentMove] = useState(0);
+ let currentBox = history[currentMove]
 
   let handlePlay=(currentBox)=>{
     setPlayer(!player)
-    setHistory([...history,currentBox])
+    let nextHistory = [...history.slice(0,currentMove+1),currentBox]
+    setHistory(nextHistory)
+    setCurrentMove(nextHistory.length-1)
   }
+
+  let jumpTo=(index)=>{
+    setCurrentMove(index);
+    setPlayer(index % 2 === 0);
+  }
+
+  let moves = history.map((element,index)=>{
+    let description;
+    if(index>0){
+      description = `Go to step ${index}`
+    }else{
+      description = 'Go to game start'
+    }
+return(
+  <li key={index}>
+    <button onClick={() => jumpTo(index)}>{description}</button>
+  </li>
+)
+  })
+
+
    return(
     <>
     <App player={player} currentBox = {currentBox} onPlay={handlePlay}/>
-    
+    <div><ol>{moves}</ol></div>
     </>
   )
 }
