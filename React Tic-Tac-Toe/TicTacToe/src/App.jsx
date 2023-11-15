@@ -12,11 +12,19 @@ let SquareBox = ({value,handleClick})=>{
 
 
 function App() {
+  // keep track of player 
+  let [player,setPlayer] = useState(true)
+  // global state to change values to "X" or "O" from null
   let [value,setValue]=useState(Array(9).fill(null))
   let handleClick = (e)=>{
     let arrcopy = value.slice()
+    if(player){
     arrcopy[e] = "X"
+    }else{
+      arrcopy[e] = "O"
+    }
     setValue(arrcopy)
+    setPlayer(!player)
   }
   return (
     <>
