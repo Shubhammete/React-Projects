@@ -1,17 +1,32 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body{
+  background-color: black;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  color: white;
+  font-size: 4em;
   text-align: center;
 }
 .box{
-  height: 2em;
-  width:2em;
-  background-color: white;
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 34px;
+  height: 4em;
+  width: 4em;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
   text-align: center;
-  color: black;
-  border: solid 2px red;
+
 }
 .rows{
   display: table;
+  content: "";
+  clear: both;
 }
