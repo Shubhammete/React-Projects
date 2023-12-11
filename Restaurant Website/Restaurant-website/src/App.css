@@ -1,0 +1,97 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+img{
+    height: 8rem;
+    width: 10rem;
+}
+
+.main{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  padding: 30px;
+}
+
+.card-container{
+  margin-top: 8rem;
+  padding: 2rem;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: auto;
+  width: 30vw;
+}
+
+.id{
+  border: solid red 1px;
+  display: inline-block;
+  width:9%;
+  font-size: 2rem ;
+  border-radius:50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title,.type{
+   text-transform:uppercase ;
+}
+
+button{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  background-color:gold;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+
+.navbar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-items{
+  gap: 3rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 1rem;
+  background-color: burlywood;
+  padding: 1rem;
+}
+
+.item{
+  cursor: pointer;
+  padding: inherit;
+}
+
+.item:hover{
+  background-color: moccasin;
+  
+}
+
+h2{
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+h1{
+  font-size: 2rem;
+  text-align: center;
+  background-color:crimson;
+  padding: 2rem;
+}

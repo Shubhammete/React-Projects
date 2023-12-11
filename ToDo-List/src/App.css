@@ -1,0 +1,36 @@
+.input{
+  padding:0.5rem 3rem;
+}
+
+.button{
+  margin-left: 1rem;
+}
+
+.lastbtn{
+  margin-top: 1rem ;
+}
+
+.lastbtn:hover span{
+  display: none;
+}
+
+.lastbtn:hover::before{
+  content: "Removed Items";
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+
+.item{
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+  padding: 1rem;
+  border: solid white 1px;
+}
