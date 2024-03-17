@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Navbar from '../components/navbar'
 import Title from '../components/title'
 
-
+// convert set into array
 let catlist = [...new Set(MenuData.map(data=>{
   return data.category
 }))]  
