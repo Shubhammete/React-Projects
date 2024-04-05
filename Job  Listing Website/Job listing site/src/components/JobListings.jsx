@@ -2,10 +2,14 @@ import jobs from '../jobs.json'
 import JobCard from './JobCard'
 
 
-const JobListings = () => {
+const JobListings = ({isHome}) => {
     const JobData = jobs.jobs
     // Limit jobs to 3
-    const RecentJobs = JobData.slice(0,3)
+    let RecentJobs = JobData.slice(0,3)
+    if(isHome){
+      RecentJobs = JobData
+    }
+    
     // Readmore
    
   return (
@@ -17,7 +21,7 @@ const JobListings = () => {
           Browse Jobs
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* <!-- Job Listing 1 --> */}
+          {/* <!-- Job Cards  --> */}
           {RecentJobs.map((job)=>(
             <JobCard key={job.id} job={job} />
           ))}

@@ -4,8 +4,10 @@ import {Link} from 'react-router-dom'
 
 
 const JobCard = ({job}) => {
+    // state for showing more information about the job
     const [showDescription, setShowDescription] = useState(false)
 
+    // It is shown as a collapsed div that expands when clicked on show more button or enter key pressed
     let description = job.description
     if(!showDescription){
         description = description.substring(0,90)+ "..."
