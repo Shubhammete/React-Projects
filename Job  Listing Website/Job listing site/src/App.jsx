@@ -1,4 +1,4 @@
-import {RouterProvider,Route,createBrowserRouter,createRoutesFromElements} from 'react-router-dom'
+import {RouterProvider,Route,createBrowserRouter,createRoutesFromElements,Link} from 'react-router-dom'
 import './App.css'
 // import Navbar from './components/Navbar'
 // import Hero from './components/Hero'
@@ -16,9 +16,9 @@ import NotFoundPage from './pages/NotFoundPage'
 const router = createBrowserRouter(
   createRoutesFromElements(
   <Route path='/' element={<MainLayout />}>
-  <Route index element={<HomePage />} />
-  <Route path='/jobs' element={<JobsPage />} />
-  <Route path='*' element={<NotFoundPage />} />
+    <Route index element={<HomePage />} />
+    <Route path='/jobs' element={<JobsPage />} />
+    <Route path='*' element={<NotFoundPage />} />
   </Route>
   )
 )
